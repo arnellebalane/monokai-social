@@ -7,21 +7,6 @@ const colors = {
     orange: '#fd971f'
 };
 
-const {colorSelectors, backgroundSelectors} = getSelectors() || {};
-
-const style = document.createElement('style');
-document.head.appendChild(style);
-
-const stylesheet = style.sheet;
-
-for (const [colorKey, selectors] of Object.entries(colorSelectors || {})) {
-    insertRule(selectors, colorKey, 'color');
-}
-
-for (const [colorKey, selectors] of Object.entries(backgroundSelectors || {})) {
-    insertRule(selectors, colorKey, 'background-color');
-}
-
 function getSelectors() {
     const hostname = location.hostname;
 
@@ -34,12 +19,16 @@ function getSelectors() {
                 purple: ['.tweet .tweet-timestamp']
             },
             backgroundSelectors: {}
-        }
+        };
     }
-    return null;
+
+    return {
+        colorSelectors: {},
+        backgroundSelectors: {}
+    };
 }
 
-function insertRule(selectors, colorKey, property) {
+function insertRule(stylesheet, selectors, colorKey, property) {
     const color = colors[colorKey];
     const selector = selectors.join(', ');
     const rule = `
@@ -48,4 +37,17 @@ function insertRule(selectors, colorKey, property) {
         }
     `;
     stylesheet.insertRule(rule, stylesheet.cssRules.length);
+}
+
+const {colorSelectors, backgroundSelectors} = getSelectors();
+
+const style = document.createElement('style');
+document.head.appendChild(style);
+
+for (const [colorKey, selectors] of Object.entries(colorSelectors)) {
+    insertRule(style.sheet, selectors, colorKey, 'color');
+}
+
+for (const [colorKey, selectors] of Object.entries(backgroundSelectors)) {
+    insertRule(style.sheet, selectors, colorKey, 'background-color');
 }
