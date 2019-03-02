@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "arnellebalane"
+  ],
+
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+
+  "env": {
+    "browser": true
+  },
+
+  "rules": {
+    "no-implicit-globals": "off"
+  }
+}
