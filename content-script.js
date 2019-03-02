@@ -7,8 +7,6 @@ const colors = {
     orange: '#fd971f'
 };
 
-const hostname = location.hostname;
-
 const {colorSelectors, backgroundSelectors} = getSelectors() || {};
 
 const style = document.createElement('style');
@@ -25,6 +23,8 @@ for (const [colorKey, selectors] of Object.entries(backgroundSelectors || {})) {
 }
 
 function getSelectors() {
+    const hostname = location.hostname;
+
     if (hostname.includes('twitter')) {
         return {
             colorSelectors: {
