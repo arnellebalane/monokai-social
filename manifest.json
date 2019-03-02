@@ -11,7 +11,7 @@
         "https://*.twitter.com/*",
         "https://*.messenger.com/*"
       ],
-      "js": ["content-script.js"]
+      "js": ["source/content-script.js"]
     }
   ]
 }
