@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Monokai Social",
+  "version": "0.0.0",
+  "description": "Enables Monokai theme for social media sites",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.twitter.com/*",
+        "https://*.messenger.com/*"
+      ],
+      "js": ["content-script.js"]
+    }
+  ]
+}
